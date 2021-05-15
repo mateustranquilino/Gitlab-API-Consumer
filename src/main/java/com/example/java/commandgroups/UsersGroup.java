@@ -1,4 +1,4 @@
-package com.example.java.commandline;
+package com.example.java.commandgroups;
 
 import com.example.java.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 @ShellComponent
 @ShellCommandGroup("Usuarios")
-public class UsersCommandLine {
+public class UsersGroup {
 
     @Autowired
     private WebClient webClient;
