@@ -18,12 +18,12 @@ public class Repository {
     @JsonProperty("ssh_url_to_repo")
     private String sshURLToRepo;
     @JsonProperty("http_url_to_repo")
-    private String httpURLRoRepo;
+    private String httpURLToRepo;
     @JsonProperty("web_url")
     private String webURL;
 
     public Repository(long id, String description, String name, String visibility, String forksCount,
-                      String createdAt, String lastActivityAt, String sshURLToRepo, String httpURLRoRepo, String webURL) {
+                      String createdAt, String lastActivityAt, String sshURLToRepo, String httpURLToRepo, String webURL) {
         this.id = id;
         this.description = description;
         this.name = name;
@@ -32,7 +32,7 @@ public class Repository {
         this.createdAt = createdAt;
         this.lastActivityAt = lastActivityAt;
         this.sshURLToRepo = sshURLToRepo;
-        this.httpURLRoRepo = httpURLRoRepo;
+        this.httpURLToRepo = httpURLToRepo;
         this.webURL = webURL;
     }
 
@@ -47,7 +47,7 @@ public class Repository {
                 .add("createdAt='" + createdAt + "'")
                 .add("lastActivityAt='" + lastActivityAt + "'")
                 .add("sshURLToRepo='" + sshURLToRepo + "'")
-                .add("httpURLRoRepo='" + httpURLRoRepo + "'")
+                .add("httpURLRoRepo='" + httpURLToRepo + "'")
                 .add("webURL='" + webURL + "'")
                 .toString();
     }
