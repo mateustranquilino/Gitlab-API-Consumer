@@ -1,5 +1,6 @@
 package com.example.java.commandgroups;
 
+import com.example.java.models.File;
 import com.example.java.models.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -23,7 +24,6 @@ public class RepositoriesGroup {
     public String listaRepositorios(@ShellOption(help = "Id do usuario") String id) {
 
         Repository[] response;
-        Scanner sc = new Scanner(System.in);
 
         if (AuthGroup.getTOKEN() != null) {
             response = webClient
@@ -42,5 +42,40 @@ public class RepositoriesGroup {
         }
 
         return Arrays.toString(response);
+    }
+
+    @ShellMethod("Lista os arquivos e diretórios de um repositório")
+    public String listaArquivosRepositorio(
+            @ShellOption(help = "Id do repositório") String id,
+            @ShellOption(help = "Quantidade retornada. Default: 20", defaultValue = "20") String pages,
+            @ShellOption(help = "Listar de forma recursiva", defaultValue = "true") String recursive){
+
+        File[] response = webClient
+                .get()
+                .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
+                .retrieve()
+                .bodyToMono(File[].class)
+                .block();
+
+        return Arrays.toString(response);
+    }
+
+    @ShellMethod("Retorna o conteudo de um arquivo do repositório")
+    public String getArquivoRepositorio(
+            @ShellOption(help = "Id do repositório") String id,
+            @ShellOption(help = "path para o arquivo") String path){
+
+        return webClient
+                .get()
+                .uri("/projects/{id}/repository/files/{path}/raw", id, path)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+    }
+
+    private String prompt(String msg){
+        Scanner sc = new Scanner(System.in);
+        System.out.print(msg + " > ");
+        return sc.nextLine();
     }
 }
