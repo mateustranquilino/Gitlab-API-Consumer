@@ -30,7 +30,8 @@ public class RepositoriesGroup {
                     .method(HttpMethod.GET)
                     .uri("/users/{user_id}/projects", id)
                     .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
-                    .retrieve().bodyToMono(Repository[].class)
+                    .retrieve()
+                    .bodyToMono(Repository[].class)
                     .block();
         } else {
             response = webClient

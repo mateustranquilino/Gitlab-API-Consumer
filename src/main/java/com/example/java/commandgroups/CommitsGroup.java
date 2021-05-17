@@ -1,6 +1,7 @@
 package com.example.java.commandgroups;
 
 import com.example.java.models.Commit;
+import com.example.java.models.CommitDiff;
 import com.example.java.models.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellCommandGroup;
@@ -20,11 +21,38 @@ public class CommitsGroup {
 
     @ShellMethod("Lista os commits em um repositório")
     public String listaCommits(@ShellOption(help = "id do repositório") String id){
-        Commit[] response = webClient
+        Commit[] response;
+        if (AuthGroup.getTOKEN() != null) {
+                response = webClient
+                    .get()
+                    .uri("/projects/{repository_id}/repository/commits", id)
+                    .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
+                    .retrieve()
+                    .bodyToMono(Commit[].class)
+                    .block();
+        }
+        else{
+            response = webClient
+                    .get()
+                    .uri("/projects/{repository_id}/repository/commits", id)
+                    .retrieve()
+                    .bodyToMono(Commit[].class)
+                    .block();
+        }
+
+        return Arrays.toString(response);
+    }
+
+    @ShellMethod("Lista os commits em um repositório")
+    public String listaDiffCommit(
+            @ShellOption(help = "id do repositório") String idRepo,
+            @ShellOption(help = "id do commit") String idCommit){
+
+        CommitDiff[] response = webClient
                 .get()
-                .uri("/projects/{repository_id}/repository/commits", id)
+                .uri("https://gitlab.com/api/v4/projects/{repository_id}/repository/commits/{id_commit}/diff", idRepo, idCommit)
                 .retrieve()
-                .bodyToMono(Commit[].class)
+                .bodyToMono(CommitDiff[].class)
                 .block();
 
         return Arrays.toString(response);
