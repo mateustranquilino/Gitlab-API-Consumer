@@ -43,8 +43,8 @@ public class CommitsGroup {
         return Arrays.toString(response);
     }
 
-    @ShellMethod("Lista os commits em um repositório")
-    public String listaDiffCommit(
+    @ShellMethod("exibe diff de um commit em um repositório")
+    public String exibeDiffCommit(
             @ShellOption(help = "id do repositório") String idRepo,
             @ShellOption(help = "id do commit") String idCommit){
 
