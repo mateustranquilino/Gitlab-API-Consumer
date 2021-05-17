@@ -15,8 +15,6 @@ ___
   
 - [ ] Comparar branchs ou commits em um repositorio
   > GET /projects/:id/repository/compare?from={branch_ou_commit_id}&to={branch_ou_commit_id}
-- [ ] Acessar commit especifico
-  > GET /projects/{repo_id}/repository/commits/{commit_id}
 - [ ] Listar arquivos e diretorios de um repositorio
     >  GET /projects/{repo_id}/repository/tree
     
@@ -52,6 +50,8 @@ ___
 
 ___
 ### Commit
+- [ ] Acessar commit especifico
+  > GET /projects/{repo_id}/repository/commits/{commit_id}
 - [ ] Criar um commit com varias ações e arquivos
   > POST /projects/{repo_id}/repository/commits
   
@@ -73,6 +73,15 @@ ___
     ]
   }
   ```
+  | Atributo         | Tipo    | Obrigatório | Descrição                                                                                                                                                                                               |
+  |:----------------:|:-------:|:-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+  | action           | string  | s           | The action to perform, create, delete, move, update, chmod                                                                                                                                              |
+  | file_path	     | string  | s           | Full path to the file. Ex. lib/class.rb                                                                                                                                                                 |
+  | previous_path    | string  | n           | Original full path to the file being moved. Ex. lib/class1.rb. Only considered for move action.                                                                                                         |
+  | content	         | string  | n           | File content, required for all except delete, chmod, and move. Move actions that do not specify content preserve the existing file content, and any other value of content overwrites the file content. |
+  | encoding         | string  | n           | text or base64. text is default.                                                                                                                                                                        |
+  | last_commit_id   | string  | n           | Last known file commit ID. Only considered in update, move, and delete actions.                                                                                                                         |
+  | execute_filemode | boolean | n           | When true/false enables/disables the execute flag on the file. Only considered for chmod action.                                                                                                        |
 
 - [ ] Reverter commit
   > POST /projects/{repo_id}/repository/commits/{commit_id}/revert
