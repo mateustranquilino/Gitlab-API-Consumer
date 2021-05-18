@@ -46,13 +46,23 @@ public class CommitsGroup {
     public String exibeDiffCommit(
             @ShellOption(help = "id do repositório") String idRepo,
             @ShellOption(help = "id do commit") String idCommit){
-
-        CommitDiff[] response = webClient
-                .get()
-                .uri("/projects/{repository_id}/repository/commits/{id_commit}/diff", idRepo, idCommit)
-                .retrieve()
-                .bodyToMono(CommitDiff[].class)
-                .block();
+        CommitDiff[] response;
+        if (AuthGroup.getTOKEN() != null) {
+            response = webClient
+                    .get()
+                    .uri("/projects/{repository_id}/repository/commits/{id_commit}/diff", idRepo, idCommit)
+                    .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
+                    .retrieve()
+                    .bodyToMono(CommitDiff[].class)
+                    .block();
+        }else {
+            response = webClient
+                    .get()
+                    .uri("/projects/{repository_id}/repository/commits/{id_commit}/diff", idRepo, idCommit)
+                    .retrieve()
+                    .bodyToMono(CommitDiff[].class)
+                    .block();
+        }
 
         return Arrays.toString(response);
     }
