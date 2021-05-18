@@ -31,7 +31,7 @@ public class CommitDiff {
 
 
     public String toString() {
-        return new StringJoiner(", \n", File.class.getSimpleName() + "{\n", "}")
+        return new StringJoiner(", \n", CommitDiff.class.getSimpleName() + "{\n", "}")
                 .add("oldPath='" + oldPath + "'")
                 .add("newPath='" + newPath + "'")
                 .add("aMode='" + aMode + "'")

@@ -28,7 +28,7 @@ public class Commit {
     }
 
     public String toString(){
-        return new StringJoiner(", \n", File.class.getSimpleName() + "{\n", "}")
+        return new StringJoiner(", \n", Commit.class.getSimpleName() + "{\n", "}")
                 .add("id='" + id + "'")
                 .add("created at='" + createdAt + "'")
                 .add("title='" + title + "'")
