@@ -11,7 +11,6 @@ import org.springframework.shell.standard.ShellOption;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 @ShellComponent
 @ShellCommandGroup("Repositorios")
@@ -51,12 +50,25 @@ public class RepositoriesGroup {
             @ShellOption(help = "Quantidade retornada. Default: 20", defaultValue = "20") String pages,
             @ShellOption(help = "Listar de forma recursiva", defaultValue = "true") String recursive){
 
-        File[] response = webClient
-                .get()
-                .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
-                .retrieve()
-                .bodyToMono(File[].class)
-                .block();
+        File[] response;
+
+        if (AuthGroup.getTOKEN() != null) {
+            response = webClient
+                    .get()
+                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
+                    .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
+                    .retrieve()
+                    .bodyToMono(File[].class)
+                    .block();
+
+        } else {
+            response = webClient
+                    .get()
+                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
+                    .retrieve()
+                    .bodyToMono(File[].class)
+                    .block();
+        }
 
         return Arrays.toString(response);
     }
@@ -66,17 +78,25 @@ public class RepositoriesGroup {
             @ShellOption(help = "Id do repositório") String id,
             @ShellOption(help = "path para o arquivo") String path){
 
-        return webClient
-                .get()
-                .uri("/projects/{id}/repository/files/{path}/raw", id, path)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-    }
+        String response;
 
-    private String prompt(String msg){
-        Scanner sc = new Scanner(System.in);
-        System.out.print(msg + " > ");
-        return sc.nextLine();
+        if (AuthGroup.getTOKEN() != null){
+            response = webClient
+                    .get()
+                    .uri("/projects/{id}/repository/files/{path}/raw", id, path)
+                    .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+        } else {
+            response = webClient
+                    .get()
+                    .uri("/projects/{id}/repository/files/{path}/raw", id, path)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+        }
+
+        return response;
     }
 }
