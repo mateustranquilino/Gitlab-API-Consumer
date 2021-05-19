@@ -7,6 +7,8 @@ import java.util.StringJoiner;
 public class Commit {
     private String id;
     @JsonProperty("created_at")
+    @JsonProperty("short_id")
+    private String shortId;
     private String createdAt;
     private String title;
     private String message;
@@ -17,8 +19,9 @@ public class Commit {
     @JsonProperty("web_url")
     private String webUrl;
 
-    public Commit(String id, String createdAt, String title, String message, String authorName, String authorEmail, String webUrl) {
+    public Commit(String id, String shortId, String createdAt, String title, String message, String authorName, String authorEmail, String webUrl) {
         this.id = id;
+        this.shortId = shortId;
         this.createdAt = createdAt;
         this.title = title;
         this.message = message;
@@ -39,3 +42,4 @@ public class Commit {
                 .toString();
     }
 }
+
