@@ -19,11 +19,11 @@ public class UsersGroup {
     private WebClient webClient;
 
     @ShellMethod("Acessa um usuario pelo username do gitlab")
-    public String getUsuario(@ShellOption(help = "Nome do usuario") String user) {
+    public String getUsuario(@ShellOption(help = "Nome do usuario") String username) {
 
         User[] response = webClient
-                .method(HttpMethod.GET)
-                .uri("/users?username={username}", user)
+                .get()
+                .uri("/users?username={username}", username)
                 .retrieve()
                 .bodyToMono(User[].class)
                 .block();

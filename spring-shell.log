@@ -1,0 +1,14 @@
+1621447283035:clear
+1621447285553:help
+1621447317964:get-usuario mateustranquilino
+1621447413757:stacktrace
+1621447957574:get-usuario --user mateustranquilino
+1621447967141:help get-usuario
+1621447976095:help get-arquivo-repositorio
+1621447995139:help get-arquivo-repositorio --id 123
+1621448016257:help get-arquivo-repositorio --id 123 --path 3
+1621448024775:help get-arquivo-repositorio --command
+1621448038742:get-arquivo-repositorio --id 2726564 path /
+1621448042248:get-arquivo-repositorio --id 2726564 --path /
+1621448601048:get-usuario --user mateustranquilino
+1621449931180:get-usuario --username mateustranquilino
