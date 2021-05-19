@@ -6,8 +6,10 @@ import java.util.StringJoiner;
 
 public class Branch {
     private String name;
-    private Commit lastCommit;    
     private Boolean merged;
+
+    @JsonProperty("commit")
+    private Commit lastCommit;
 
     @JsonProperty("protected")
     private Boolean protected_;
@@ -26,8 +28,6 @@ public class Branch {
 
     @JsonProperty("web_url")
     private String webURL;
-
-
 
     public Branch(String name, Commit lastCommit, Boolean merged, Boolean protected_, Boolean developersCanpush,
             Boolean developersCanMerge, Boolean canPush, Boolean default_, String webURL) {
