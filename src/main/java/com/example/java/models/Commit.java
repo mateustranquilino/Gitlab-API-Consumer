@@ -6,9 +6,9 @@ import java.util.StringJoiner;
 
 public class Commit {
     private String id;
-    @JsonProperty("created_at")
     @JsonProperty("short_id")
     private String shortId;
+    @JsonProperty("created_at")
     private String createdAt;
     private String title;
     private String message;
@@ -30,15 +30,17 @@ public class Commit {
         this.webUrl = webUrl;
     }
 
-    public String toString(){
-        return new StringJoiner(", \n", Commit.class.getSimpleName() + "{\n", "}")
+    @Override
+    public String toString() {
+        return new StringJoiner(", \n", "\n" + Commit.class.getSimpleName() + "{\n", "}")
                 .add("id='" + id + "'")
-                .add("created at='" + createdAt + "'")
+                .add("shortId='" + shortId + "'")
+                .add("createdAt='" + createdAt + "'")
                 .add("title='" + title + "'")
                 .add("message='" + message + "'")
-                .add("author name='" + authorName + "'")
-                .add("author email='" + authorEmail + "'")
-                .add("web url='" + webUrl + "'")
+                .add("authorName='" + authorName + "'")
+                .add("authorEmail='" + authorEmail + "'")
+                .add("webUrl='" + webUrl + "'")
                 .toString();
     }
 }

@@ -38,7 +38,7 @@ public class Repository {
 
     @Override
     public String toString() {
-        return new StringJoiner(", \n", Repository.class.getSimpleName() + "{\n", "}")
+        return new StringJoiner(", \n", "\n" + Repository.class.getSimpleName() + "{\n", "}")
                 .add("id=" + id)
                 .add("description='" + description + "'")
                 .add("name='" + name + "'")

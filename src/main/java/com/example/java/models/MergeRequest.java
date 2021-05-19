@@ -27,6 +27,9 @@ public class MergeRequest {
     @JsonProperty("closed_by")
     private User closedBy;
 
+    @JsonProperty("closed_at")
+    private String closedAt;
+
     @JsonProperty("created_at")
     private String createdAt;
 
@@ -58,62 +61,65 @@ public class MergeRequest {
     @JsonProperty("work_in_progress")
     private Boolean workInProgress;
 
-    public MergeRequest(String id, String iid, String projectId, String title, String description, String state,
-        User mergedBy, String mergedAt, User closedBy, String createdAt, String updatedAt, String targetBranch,
-        String sourceBranch, User author, User assignee, User[] assignees, User[] reviewers, String sourceProjectId,
-        String targetProjectId, String[] labels, Boolean workInProgress) {
-      this.id = id;
-      this.iid = iid;
-      this.projectId = projectId;
-      this.title = title;
-      this.description = description;
-      this.state = state;
-      this.mergedBy = mergedBy;
-      this.mergedAt = mergedAt;
-      this.closedBy = closedBy;
-      this.createdAt = createdAt;
-      this.updatedAt = updatedAt;
-      this.targetBranch = targetBranch;
-      this.sourceBranch = sourceBranch;
-      this.author = author;
-      this.assignee = assignee;
-      this.assignees = assignees;
-      this.reviewers = reviewers;
-      this.sourceProjectId = sourceProjectId;
-      this.targetProjectId = targetProjectId;
-      this.labels = labels;
-      this.workInProgress = workInProgress;
+    public MergeRequest(
+            String id, String iid, String projectId, String title, String description, String state,
+            User mergedBy, String mergedAt, User closedBy, String closedAt, String createdAt, String updatedAt,
+            String targetBranch, String sourceBranch, User author, User assignee, User[] assignees, User[] reviewers,
+            String sourceProjectId, String targetProjectId, String[] labels, Boolean workInProgress) {
+
+        this.id = id;
+        this.iid = iid;
+        this.projectId = projectId;
+        this.title = title;
+        this.description = description;
+        this.state = state;
+        this.mergedBy = mergedBy;
+        this.mergedAt = mergedAt;
+        this.closedBy = closedBy;
+        this.closedAt = closedAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.targetBranch = targetBranch;
+        this.sourceBranch = sourceBranch;
+        this.author = author;
+        this.assignee = assignee;
+        this.assignees = assignees;
+        this.reviewers = reviewers;
+        this.sourceProjectId = sourceProjectId;
+        this.targetProjectId = targetProjectId;
+        this.labels = labels;
+        this.workInProgress = workInProgress;
     }
 
     @Override
     public String toString() {
-      return new StringJoiner(", \n", "\n\n" + DiffBranch.class.getSimpleName() + "{\n", "}")
-      .add("id=" + id)
-      .add("iid=" + iid)
-      .add("projectId=" + projectId)
-      .add("title=" + title)
-      .add("description=" + description)
-      .add("state=" + state)
-      .add("mergedBy=" + mergedBy)
-      .add("mergedAt=" + mergedAt)
-      .add("closedBy=" + closedBy)
-      .add("createdAt=" + createdAt)
-      .add("updatedAt=" + updatedAt)
-      .add("targetBranch=" + targetBranch)
-      .add("sourceBranch=" + sourceBranch)
-      .add("author=" + author)
-      .add("assignee=" + assignee)
-      .add("assignees=" + Arrays.toString(assignees))
-      .add("reviewers=" + Arrays.toString(reviewers))
-      .add("sourceProjectId=" + sourceProjectId)
-      .add("targetProjectId=" + targetProjectId)
-      .add("labels=" + Arrays.toString(labels))
-      .add("workInProgress=" + workInProgress)
-      .toString();
+        return new StringJoiner(", \n", "\n\n" + MergeRequest.class.getSimpleName() + "{\n", "}")
+                .add("id='" + id + "'")
+                .add("iid='" + iid + "'")
+                .add("projectId='" + projectId + "'")
+                .add("title='" + title + "'")
+                .add("description='" + description + "'")
+                .add("state='" + state + "'")
+                .add("mergedBy=" + mergedBy)
+                .add("mergedAt='" + mergedAt + "'")
+                .add("closedBy=" + closedBy)
+                .add("closedAt='" + closedAt + "'")
+                .add("createdAt='" + createdAt + "'")
+                .add("updatedAt='" + updatedAt + "'")
+                .add("targetBranch='" + targetBranch + "'")
+                .add("sourceBranch='" + sourceBranch + "'")
+                .add("author=" + author)
+                .add("assignee=" + assignee)
+                .add("assignees=" + Arrays.toString(assignees))
+                .add("reviewers=" + Arrays.toString(reviewers))
+                .add("sourceProjectId='" + sourceProjectId + "'")
+                .add("targetProjectId='" + targetProjectId + "'")
+                .add("labels=" + Arrays.toString(labels))
+                .add("workInProgress=" + workInProgress)
+                .toString();
     }
 
 
-      
 }
 
 /* Exemplo 

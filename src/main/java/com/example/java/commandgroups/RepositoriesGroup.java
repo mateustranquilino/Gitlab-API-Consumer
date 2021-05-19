@@ -47,15 +47,17 @@ public class RepositoriesGroup {
     @ShellMethod("Lista os arquivos e diretórios de um repositório")
     public String listaArquivosRepositorio(
             @ShellOption(help = "Id do repositório") String id,
-            @ShellOption(help = "Quantidade retornada. Default: 20", defaultValue = "20") String pages,
-            @ShellOption(help = "Listar de forma recursiva", defaultValue = "true") String recursive){
+            @ShellOption(help = "Quantidade de arquivos retornados. Default: 20", defaultValue = "20") String pages,
+            @ShellOption(help = "Listar de forma recursiva", defaultValue = "false") String recursive,
+            @ShellOption(help = "Path para algum subdiretorio", defaultValue = "") String path){
 
         File[] response;
 
         if (AuthGroup.getTOKEN() != null) {
             response = webClient
                     .get()
-                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
+                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}&path={path}",
+                            id,recursive, pages, path)
                     .headers(h -> h.setBearerAuth(AuthGroup.getTOKEN()))
                     .retrieve()
                     .bodyToMono(File[].class)
@@ -64,7 +66,8 @@ public class RepositoriesGroup {
         } else {
             response = webClient
                     .get()
-                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}", id,recursive, pages)
+                    .uri("/projects/{id}/repository/tree?recursive={recursive}&per_page={pages}&path={path}",
+                            id,recursive, pages, path)
                     .retrieve()
                     .bodyToMono(File[].class)
                     .block();

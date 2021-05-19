@@ -28,7 +28,7 @@ public class File {
 
     @Override
     public String toString() {
-        return new StringJoiner(", \n", File.class.getSimpleName() + "{\n", "}")
+        return new StringJoiner(", \n", "\n" + File.class.getSimpleName() + "{\n", "}")
                 .add("id='" + id + "'")
                 .add("name='" + name + "'")
                 .add("type='" + type + "'")

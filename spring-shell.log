@@ -12,3 +12,61 @@
 1621448042248:get-arquivo-repositorio --id 2726564 --path /
 1621448601048:get-usuario --user mateustranquilino
 1621449931180:get-usuario --username mateustranquilino
+1621456997765:get-usuario mateustranquilino
+1621458395819:exit
+1621458508537:help lista-arquivos-repositorio
+1621458567036:lista-arquivos-repositorio --id 26676197
+1621458626519:exi
+1621458629167:exit
+1621458660693:lista-arquivos-repositorio 26676197
+1621459032458:lista-branches 26676197
+1621459207660:login EyKKPDswHLsKK3CReFFj
+1621459209238:lista-branches 26676197
+1621459342928:exit
+1621459376390:lista-branches 26676197
+1621459384238:lista-arquivos-repositorio 26676197
+1621459489009:exit
+1621459538331:lista-arquivos-repositorio 26676197
+1621459599542:lista-branches 26676197
+1621459605967:login EyKKPDswHLsKK3CReFFj
+1621459609891:lista-branches 26676197
+1621459617337:get-usuario mateustranquilino
+1621459632466:help
+1621459635156:logout
+1621459638123:help
+1621459741989:help get-usuario
+1621459759682:get-usuario --username mateustranquilino
+1621459858653:login EyKKPDswHLsKK3CReFFj
+1621459876372:lista-repositorios --id 8896057
+1621459970012:exit
+1621460156475:login EyKKPDswHLsKK3CReFFj
+1621460168099:get-usuario mateustranquilino
+1621460204827:lista-repositorios --id 8896057
+1621460328343:login EyKKPDswHLsKK3CReFFj
+1621460331888:lista-repositorios --id 8896057
+1621460396424:lista-arquivos-repositorio --id 26676197
+1621460633107:get-arquivo-repositorio --id 2726564 --path URI2858.py
+1621460651452:get-arquivo-repositorio --id 26676197 --path URI2858.py
+1621460685302:help
+1621460705438:lista-merge-requests --id 26676197
+1621460928589:help
+1621460942505:lista-branches --id 26676197
+1621460976821:get-branch --id 26676197 --name master
+1621460995448:help
+1621461024487:compare-branches --id 26676197 --branch-name1 master --branch-name2 mateustranquilino-master-patch-50882
+1621461320647:lista-merge-requests --id 26676197
+1621461534387:login EyKKPDswHLsKK3CReFFj
+1621461537772:lista-merge-requests --id 26676197
+1621462063931:exit
+1621462088447:lista-merge-requests --id 26676197
+1621462148845:help
+1621462172006:lista-commits
+1621462176503:lista-commits 26676197
+1621462400570:exib-commit-especifico 26676197 cd17b7c7
+1621462410292:exibe-commit 26676197 cd17b7c7
+1621462418348:lista-commits 26676197
+1621462432623:help
+1621462437685:lista-commits 26676197
+1621462470664:exibe-diff-commit 26676197 --id-cd17b7c7
+1621462474253:exibe-diff-commit 26676197 --id cd17b7c7
+1621462478693:exibe-diff-commit 26676197 cd17b7c7
